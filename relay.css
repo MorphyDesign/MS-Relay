@@ -27,7 +27,7 @@ h2{font-weight:400;text-align:left}.section-heading{display:block}.section-headi
   .wayfinding-sign-row-last{grid-template-columns:1fr;margin-left:62.5%}
   .wayfinding-sign-row-last .wayfinding-sign-spacer{display:none}
   .wayfinding-sign-row-last .sign-jubilee{border-left:var(--line)}
-  .wayfinding-sign-row-number{--number-sign-gap:clamp(22px,3vw,52px);grid-template-columns:repeat(2,1fr);column-gap:var(--number-sign-gap);width:calc(25% + var(--number-sign-gap));margin-left:auto}
+  .wayfinding-sign-row-number{--number-sign-gap:clamp(22px,3vw,52px);grid-template-columns:repeat(2,var(--sign-module-height));column-gap:var(--number-sign-gap);width:max-content;margin-left:auto}
   .wayfinding-sign-row-number .sign-number{justify-content:center;padding-inline:10px;font-size:clamp(56px,6vw,116px);text-align:center}
   .wayfinding-sign-row-number .sign-number>span{display:block;transform:translateY(.06em)}
   .wayfinding-sign-row-number .sign-number+.sign-number{border-left:var(--line)}
@@ -64,7 +64,7 @@ body{font-feature-settings:"ss01" 1}
 .wayfinding-copy dl{font-size:clamp(9px,.63vw,11.2px)}
 .wayfinding-copy{width:78%;max-width:360px}
 @media(max-width:650px){.wayfinding-copy{width:100%;max-width:none}}
-@media(max-width:650px){.wayfinding-sign-row-number{--number-sign-gap:18px;grid-template-columns:repeat(2,1fr);column-gap:var(--number-sign-gap);width:calc(66.666% + var(--number-sign-gap));margin-left:auto}.wayfinding-sign-row-number .sign-number{justify-content:center;padding-inline:10px;text-align:center}.wayfinding-sign-row-number .sign-number+.sign-number{border-left:var(--line)}}
+@media(max-width:650px){.wayfinding-sign-row-number{--number-sign-gap:18px;grid-template-columns:repeat(2,90px);column-gap:var(--number-sign-gap);width:max-content;margin-left:auto}.wayfinding-sign-row-number .sign-number{width:90px;height:90px;justify-content:center;padding:10px;text-align:center}.wayfinding-sign-row-number .sign-number+.sign-number{border-left:var(--line)}}
 .enclosed-characters{border-bottom:var(--line)}
 .enclosed-characters .section-heading>span{font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0}
 .enclosed-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:var(--pad)}
