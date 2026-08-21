@@ -389,3 +389,19 @@ document.querySelectorAll(".wayfinding-copy").forEach(section=>{
     node.nodeValue=node.nodeValue.replace(/fi/gi,match=>match[0]+"\u200C"+match.slice(1));
   });
 });
+
+const systemAlignmentLines=document.querySelectorAll(".system-alignment-display>div");
+
+function fitSystemAlignmentLines(){
+  systemAlignmentLines.forEach(line=>{
+    const text=line.querySelector("span");
+    if(!text)return;
+    text.style.transform="none";
+    const available=line.getBoundingClientRect().width;
+    const natural=text.getBoundingClientRect().width;
+    if(available&&natural)text.style.transform=`scaleX(${available/natural})`;
+  });
+}
+
+document.fonts.ready.then(fitSystemAlignmentLines);
+window.addEventListener("resize",fitSystemAlignmentLines);

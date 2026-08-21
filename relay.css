@@ -79,9 +79,9 @@ body{font-feature-settings:"ss01" 1}
 .system-alignment{padding:clamp(30px,3vw,58px) var(--pad) clamp(34px,4vw,76px);overflow:hidden;border-bottom:var(--line)}
 .system-alignment-copy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(22px,4vw,72px);margin-bottom:clamp(54px,6vw,110px)}
 .system-alignment-copy p{margin:0;font-size:clamp(11px,.75vw,14px);line-height:1.18;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0}
-.system-alignment-display{font-size:clamp(52px,6.8vw,130px);font-weight:900;line-height:1.08;font-variant-ligatures:common-ligatures;font-feature-settings:"liga" 1,"clig" 1}
+.system-alignment-display{width:calc(100% + 2 * var(--pad));margin-inline:calc(-1 * var(--pad));font-size:clamp(52px,6.8vw,130px);font-weight:900;line-height:1.08;font-variant-ligatures:common-ligatures;font-feature-settings:"liga" 1,"clig" 1}
 .system-alignment-display>div{display:flex;align-items:baseline;min-height:1.08em;white-space:nowrap}
-.system-alignment-display>div>span{display:inline-block}
+.system-alignment-display>div>span{display:inline-block;transform-origin:left center}
 .system-alignment-display>div:nth-child(1)>span{letter-spacing:.022em}
 .system-alignment-display>div:nth-child(2)>span{letter-spacing:-.012em}
 .system-alignment-display>div:nth-child(3)>span{letter-spacing:0}
