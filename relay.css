@@ -27,8 +27,8 @@ h2{font-weight:400;text-align:left}.section-heading{display:block}.section-headi
   .wayfinding-sign-row-last{grid-template-columns:1fr;margin-left:62.5%}
   .wayfinding-sign-row-last .wayfinding-sign-spacer{display:none}
   .wayfinding-sign-row-last .sign-jubilee{border-left:var(--line)}
-  .wayfinding-sign-row-number{--number-sign-gap:clamp(22px,3vw,52px);grid-template-columns:repeat(2,var(--sign-module-height));column-gap:var(--number-sign-gap);width:max-content;margin-left:auto}
-  .wayfinding-sign-row-number .sign-number{justify-content:center;padding-inline:10px;font-size:clamp(56px,6vw,116px);text-align:center}
+  .wayfinding-sign-row-number{--number-sign-gap:clamp(22px,3vw,52px);display:flex;gap:var(--number-sign-gap);width:max-content;margin-left:auto}
+  .wayfinding-sign-row-number .sign-number{flex:0 0 var(--sign-module-height);width:var(--sign-module-height);height:var(--sign-module-height);justify-content:center;padding:10px;font-size:clamp(56px,6vw,116px);text-align:center}
   .wayfinding-sign-row-number .sign-number>span{display:block;transform:translateY(.06em)}
   .wayfinding-sign-row-number .sign-number+.sign-number{border-left:var(--line)}
 }
