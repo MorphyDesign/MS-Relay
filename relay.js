@@ -6,9 +6,14 @@ const weightOutput=document.querySelector("#weight-output");
 const sizeOutput=document.querySelector("#size-output");
 const trackingOutput=document.querySelector("#tracking-output");
 
+function responsiveTypeScale(){
+  return Math.min(1,Math.max(.35,window.innerWidth/1200));
+}
+
 function updateTester(){
+  const displaySize=Math.max(34,Number(sizeRange.value)*responsiveTypeScale());
   testerText.style.fontWeight=weightSelect.value;
-  testerText.style.fontSize=sizeRange.value+"px";
+  testerText.style.fontSize=displaySize+"px";
   testerText.style.letterSpacing=trackingRange.value+"px";
   weightOutput.textContent=weightSelect.value;
   sizeOutput.textContent=sizeRange.value+" px";
@@ -18,6 +23,7 @@ function updateTester(){
 [weightSelect,sizeRange,trackingRange].forEach(control=>control.addEventListener("input",updateTester));
 updateTester();
 
+const pairTesterUpdates=[];
 document.querySelectorAll(".relay-pair-unit").forEach(unit=>{
   const text=unit.querySelector(".relay-pair-text");
   const size=unit.querySelector('[data-pair-control="size"]');
@@ -27,7 +33,8 @@ document.querySelectorAll(".relay-pair-unit").forEach(unit=>{
   const weightValue=unit.querySelector('[data-pair-value="weight"]');
   const trackingValue=unit.querySelector('[data-pair-value="tracking"]');
   function updatePairTester(){
-    text.style.setProperty("--pair-size",size.value+"px");
+    const displaySize=Math.max(24,Number(size.value)*responsiveTypeScale());
+    text.style.setProperty("--pair-size",displaySize+"px");
     text.style.setProperty("--pair-weight",weight.value);
     text.style.setProperty("--pair-tracking",tracking.value+"px");
     sizeValue.textContent=size.value+" px";
@@ -35,6 +42,7 @@ document.querySelectorAll(".relay-pair-unit").forEach(unit=>{
     trackingValue.textContent=tracking.value;
   }
   [size,weight,tracking].forEach(control=>control.addEventListener("input",updatePairTester));
+  pairTesterUpdates.push(updatePairTester);
   updatePairTester();
 });
 
@@ -49,13 +57,14 @@ const kerningContext=kerningCanvas.getContext("2d");
 
 function renderKerning(){
   const weight=Number(kerningWeight.value);
-  const size=Number(kerningSize.value);
+  const requestedSize=Number(kerningSize.value);
+  const size=Math.max(42,requestedSize*responsiveTypeScale());
   const tracking=Number(kerningTracking.value);
   kerningLab.style.setProperty("--k-weight",weight);
   kerningLab.style.setProperty("--k-size",size);
   kerningLab.style.setProperty("--k-tracking",tracking);
   document.querySelector("#kerning-weight-output").textContent=weight;
-  document.querySelector("#kerning-size-output").textContent=size;
+  document.querySelector("#kerning-size-output").textContent=requestedSize;
   document.querySelector("#kerning-tracking-output").textContent=tracking;
   kerningContext.font=weight+" 1000px Relay";
   kerningContext.fontKerning="normal";
@@ -96,6 +105,12 @@ function renderKerning(){
 
 [kerningSource,kerningWeight,kerningSize,kerningTracking].forEach(control=>control.addEventListener("input",renderKerning));
 document.fonts.ready.then(renderKerning);
+
+window.addEventListener("resize",()=>{
+  updateTester();
+  pairTesterUpdates.forEach(update=>update());
+  renderKerning();
+},{passive:true});
 
 const weightLayerStage=document.querySelector(".weight-system-glyph");
 const weightLayerObject=document.querySelector(".weight-layer-object");
@@ -632,4 +647,49 @@ document.querySelectorAll(".portfolio-name-typewriter[data-typewriter-text]").fo
   }
 
   window.setTimeout(typeForward,350);
+});
+
+function updateNumeralMetrics(){
+  document.querySelectorAll(".numeral-study-row").forEach((row)=>{
+    const numerals=row.querySelector("p");
+    const label=row.querySelector("[data-numeral-metrics]");
+    if(!numerals||!label)return;
+    const styles=getComputedStyle(numerals);
+    const size=Math.round(parseFloat(styles.fontSize)*.75);
+    const leading=Math.round(parseFloat(styles.lineHeight)*.75);
+    label.textContent=`${size}/${leading} pt`;
+  });
+}
+
+updateNumeralMetrics();
+window.addEventListener("resize",updateNumeralMetrics,{passive:true});
+
+document.querySelectorAll(".numeral-study-rows").forEach((numeralStudy)=>{
+  const rows=[...numeralStudy.querySelectorAll(".numeral-study-row p")];
+  const cells=rows.flatMap((row,rowIndex)=>{
+    const numerals=[...row.querySelectorAll("b")];
+    return numerals.map((numeral,columnIndex)=>({
+      numeral,
+      rowIndex,
+      x:numerals.length>1?(columnIndex/(numerals.length-1))*8:0
+    }));
+  });
+  const resetWeights=()=>cells.forEach(({numeral})=>{numeral.style.fontWeight="100";});
+  const applyWeightField=(activeCell)=>{
+    cells.forEach((cell)=>{
+      const horizontalDistance=cell.x-activeCell.x;
+      const verticalDistance=cell.rowIndex-activeCell.rowIndex;
+      const distance=Math.hypot(horizontalDistance,verticalDistance);
+      cell.numeral.style.fontWeight=distance<.1?"900":distance<=1.1?"700":distance<=2.1?"400":"300";
+    });
+  };
+  cells.forEach((cell)=>{
+    cell.numeral.tabIndex=0;
+    cell.numeral.addEventListener("pointerenter",()=>applyWeightField(cell));
+    cell.numeral.addEventListener("focus",()=>applyWeightField(cell));
+  });
+  numeralStudy.addEventListener("pointerleave",resetWeights);
+  numeralStudy.addEventListener("focusout",(event)=>{
+    if(!numeralStudy.contains(event.relatedTarget))resetWeights();
+  });
 });
