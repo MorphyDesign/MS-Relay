@@ -2,6 +2,7 @@ const testerText=document.querySelector("#tester-text");
 const weightSelect=document.querySelector("#weight-select");
 const sizeRange=document.querySelector("#size-range");
 const trackingRange=document.querySelector("#tracking-range");
+const weightOutput=document.querySelector("#weight-output");
 const sizeOutput=document.querySelector("#size-output");
 const trackingOutput=document.querySelector("#tracking-output");
 
@@ -9,12 +10,33 @@ function updateTester(){
   testerText.style.fontWeight=weightSelect.value;
   testerText.style.fontSize=sizeRange.value+"px";
   testerText.style.letterSpacing=trackingRange.value+"px";
+  weightOutput.textContent=weightSelect.value;
   sizeOutput.textContent=sizeRange.value+" px";
-  trackingOutput.textContent=trackingRange.value;
+  trackingOutput.textContent=Number(trackingRange.value)===0?"000":trackingRange.value;
 }
 
 [weightSelect,sizeRange,trackingRange].forEach(control=>control.addEventListener("input",updateTester));
 updateTester();
+
+document.querySelectorAll(".relay-pair-unit").forEach(unit=>{
+  const text=unit.querySelector(".relay-pair-text");
+  const size=unit.querySelector('[data-pair-control="size"]');
+  const weight=unit.querySelector('[data-pair-control="weight"]');
+  const tracking=unit.querySelector('[data-pair-control="tracking"]');
+  const sizeValue=unit.querySelector('[data-pair-value="size"]');
+  const weightValue=unit.querySelector('[data-pair-value="weight"]');
+  const trackingValue=unit.querySelector('[data-pair-value="tracking"]');
+  function updatePairTester(){
+    text.style.setProperty("--pair-size",size.value+"px");
+    text.style.setProperty("--pair-weight",weight.value);
+    text.style.setProperty("--pair-tracking",tracking.value+"px");
+    sizeValue.textContent=size.value+" px";
+    weightValue.textContent=weight.value;
+    trackingValue.textContent=tracking.value;
+  }
+  [size,weight,tracking].forEach(control=>control.addEventListener("input",updatePairTester));
+  updatePairTester();
+});
 
 const kerningLab=document.querySelector(".kerning-lab");
 const kerningSource=document.querySelector("#kerning-source");
@@ -44,16 +66,20 @@ function renderKerning(){
     const value=document.createElement("span");
     const glyph=document.createElement("strong");
     cell.className="kerning-glyph";
+    cell.dataset.character=character;
     value.className="kerning-glyph-value";
     glyph.className="kerning-glyph-character";
     glyph.textContent=character===" "?"·":character;
     const metrics=kerningContext.measureText(character);
     const measuredWidth=Math.round(metrics.width);
     const inkWidth=(metrics.actualBoundingBoxLeft+metrics.actualBoundingBoxRight)/1000*size;
-    const width=Math.max(22,inkWidth+tracking+1);
+    const usesNativeSidebearings=character==="i"||character==="l";
+    const width=usesNativeSidebearings
+      ?Math.max(22,metrics.width/1000*size+tracking)
+      :Math.max(22,inkWidth+tracking+1);
     cell.style.width=width+"px";
     const opticalShift=(metrics.width-metrics.actualBoundingBoxRight+metrics.actualBoundingBoxLeft)/2/1000*size-.5;
-    glyph.style.transform="translateX("+opticalShift+"px)";
+    glyph.style.transform=usesNativeSidebearings?"none":"translateX("+opticalShift+"px)";
     cell.dataset.inkWidth=inkWidth.toFixed(3);
     if(index>0){
       const previous=characters[index-1];
@@ -103,6 +129,7 @@ function highlightWeightLayer(event){
 
 weightLayerStage?.addEventListener("pointermove",highlightWeightLayer);
 weightLayerStage?.addEventListener("pointerleave",resetWeightLayers);
+
 weightLayerObject?.addEventListener("load",resetWeightLayers);
 
 const pictogramCells=document.querySelectorAll(".pictogram-grid span");
@@ -397,11 +424,212 @@ function fitSystemAlignmentLines(){
     const text=line.querySelector("span");
     if(!text)return;
     text.style.transform="none";
+    text.style.fontSize="";
+    if(window.matchMedia("(max-width: 650px)").matches)return;
     const available=line.getBoundingClientRect().width;
-    const natural=text.getBoundingClientRect().width;
-    if(available&&natural)text.style.transform=`scaleX(${available/natural})`;
+    if(!available)return;
+    let low=12;
+    let high=180;
+    for(let step=0;step<14;step++){
+      const size=(low+high)/2;
+      text.style.fontSize=`${size}px`;
+      if(text.getBoundingClientRect().width<=available)low=size;
+      else high=size;
+    }
+    text.style.fontSize=`${low}px`;
   });
 }
 
 document.fonts.ready.then(fitSystemAlignmentLines);
 window.addEventListener("resize",fitSystemAlignmentLines);
+
+const departureStage=document.querySelector(".departure-stage");
+const departureStageInner=document.querySelector(".departure-stage-inner");
+
+function scaleDepartureStage(){
+  if(!departureStage||!departureStageInner)return;
+  const scale=Math.min(1,departureStage.clientWidth/1080);
+  departureStage.style.setProperty("--departure-stage-scale",String(scale));
+  departureStage.style.height=`${departureStageInner.offsetHeight*scale}px`;
+}
+
+if(departureStage&&departureStageInner){
+  new ResizeObserver(scaleDepartureStage).observe(departureStage);
+  document.fonts.ready.then(scaleDepartureStage);
+  window.addEventListener("resize",scaleDepartureStage);
+  scaleDepartureStage();
+}
+
+const departureClock=document.querySelector(".departure-clock");
+
+if(departureClock){
+  const clockSeconds=departureClock.querySelector("sup");
+  const clockStart=Date.now();
+  let lastDisplayedSecond=-1;
+
+  function updateDepartureClock(){
+    const elapsedSeconds=Math.floor((Date.now()-clockStart)/1000);
+    if(elapsedSeconds===lastDisplayedSecond)return;
+    lastDisplayedSecond=elapsedSeconds;
+    const seconds=elapsedSeconds%60;
+    const main="23:33";
+    const secondText=String(seconds).padStart(2,"0");
+    clockSeconds.textContent=secondText;
+    departureClock.dateTime=`${main}:${secondText}`;
+  }
+
+  updateDepartureClock();
+  window.setInterval(updateDepartureClock,250);
+}
+
+const departureStopLists=[
+  {
+    element:document.querySelector(".departure-panel-primary .departure-stops"),
+    pages:[
+      [
+        ["Farringdon",true],
+        ["London Blackfriars",true],
+        ["London Bridge",true],
+        ["Norwood Junction",false],
+        ["East Croydon",false],
+        ["Purley",false],
+        ["Redhill",false],
+        ["Earlswood Surrey",false],
+        ["Salfords",false],
+        ["Horley",false]
+      ],
+      [
+        ["Gatwick Airport",false,false,"\uE02F"],
+        ["Three Bridges",false],
+        ["Crawley",false],
+        ["Ifield",false,true],
+        ["Littlehaven",false],
+        ["Horsham",false]
+      ]
+    ]
+  },
+  {
+    element:document.querySelector(".departure-panel-secondary .departure-stops"),
+    pages:[
+      [
+        ["Farringdon",true],
+        ["London Blackfriars",true],
+        ["Elephant & Castle",true],
+        ["Loughborough Jcn",false],
+        ["Herne Hill",false],
+        ["Tulse Hill",false],
+        ["Streatham",false],
+        ["Tooting",false],
+        ["Haydons Road",false],
+        ["Wimbledon",true]
+      ],
+      [
+        ["Wimbledon Chase",false],
+        ["South Merton",false],
+        ["Morden South",false],
+        ["St Helier",false],
+        ["Sutton Common",false],
+        ["West Sutton",false],
+        ["Sutton",false]
+      ]
+    ]
+  }
+];
+
+function renderDepartureStopPage(list,page){
+  if(!list.element)return;
+  list.element.replaceChildren(...list.pages[page].map(([name,hasMetro,noLigatures,extraIcon])=>{
+    const item=document.createElement("li");
+    if(noLigatures)item.classList.add("no-ligatures");
+    item.append(document.createTextNode(name));
+    if(hasMetro){
+      const metro=document.createElement("span");
+      metro.className="departure-metro-logo";
+      metro.setAttribute("aria-label","Metro");
+      metro.textContent="\uE02D";
+      item.append(" ",metro);
+    }
+    if(extraIcon){
+      const icon=document.createElement("span");
+      icon.className="departure-metro-logo departure-airport-logo";
+      icon.setAttribute("aria-label","icon.airport");
+      icon.dataset.iconName="icon.airport";
+      icon.textContent=extraIcon;
+      item.append(" ",icon);
+    }
+    return item;
+  }));
+}
+
+if(departureStopLists.every(list=>list.element)){
+  let departureStopPage=0;
+  const departurePageLabels=document.querySelectorAll(".departure-page-label");
+  departureStopLists.forEach(list=>renderDepartureStopPage(list,departureStopPage));
+  departurePageLabels.forEach(label=>{label.textContent="Page 1 of 4";});
+  window.setInterval(()=>{
+    departureStopPage=departureStopPage===0?1:0;
+    departureStopLists.forEach(list=>renderDepartureStopPage(list,departureStopPage));
+    departurePageLabels.forEach(label=>{label.textContent=`Page ${departureStopPage+1} of 4`;});
+  },3000);
+}
+
+document.querySelectorAll(".portfolio-name-typewriter[data-typewriter-text]").forEach((typewriterText)=>{
+  const fullTypewriterText=typewriterText.dataset.typewriterText;
+  const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reducedMotion)return;
+
+  let typewriterPosition=0;
+  let correctionIndex=0;
+  const correctionPoints=[
+    Math.max(4,Math.round(fullTypewriterText.length*.38))
+  ];
+  const typoFragments=["Desg"];
+  typewriterText.textContent="";
+
+  function typeForward(){
+    typewriterPosition+=1;
+    typewriterText.textContent=fullTypewriterText.slice(0,typewriterPosition);
+    if(correctionIndex<correctionPoints.length&&typewriterPosition===correctionPoints[correctionIndex]){
+      const typo=typoFragments[correctionIndex];
+      correctionIndex+=1;
+      window.setTimeout(()=>typeTypo(typo,1),120);
+      return;
+    }
+    if(typewriterPosition<fullTypewriterText.length){
+      window.setTimeout(typeForward,50+Math.random()*55);
+    }else{
+      window.setTimeout(eraseAll,1200);
+    }
+  }
+
+  function typeTypo(typo,typedLength){
+    typewriterText.textContent=fullTypewriterText.slice(0,typewriterPosition)+typo.slice(0,typedLength);
+    if(typedLength<typo.length){
+      window.setTimeout(()=>typeTypo(typo,typedLength+1),60+Math.random()*30);
+    }else{
+      window.setTimeout(()=>eraseTypo(typo,typo.length),220);
+    }
+  }
+
+  function eraseTypo(typo,remaining){
+    typewriterText.textContent=fullTypewriterText.slice(0,typewriterPosition)+typo.slice(0,remaining-1);
+    if(remaining>1){
+      window.setTimeout(()=>eraseTypo(typo,remaining-1),50);
+    }else{
+      window.setTimeout(typeForward,180);
+    }
+  }
+
+  function eraseAll(){
+    typewriterPosition-=1;
+    typewriterText.textContent=fullTypewriterText.slice(0,typewriterPosition);
+    if(typewriterPosition>0){
+      window.setTimeout(eraseAll,28);
+    }else{
+      correctionIndex=0;
+      window.setTimeout(typeForward,450);
+    }
+  }
+
+  window.setTimeout(typeForward,350);
+});
