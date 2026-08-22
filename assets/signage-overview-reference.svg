@@ -41,11 +41,17 @@
         font-feature-settings: "ss01" 1, "salt" 0, "liga" 0, "clig" 0 !important;
       }
 
-      .line-arrow {
+      .line-arrow,
+      .cls-6,
+      .cls-7,
+      .cls-8,
+      .cls-9 {
         font-family: MSRelaySans-Black-Circled, MSRelaySans-Black, 'MS Relay Sans' !important;
         font-weight: 900 !important;
         font-variation-settings: "wght" 900;
         font-synthesis: none;
+        font-style: normal !important;
+        stroke: none !important;
       }
 
       .cls-3 {
