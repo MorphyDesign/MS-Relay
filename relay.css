@@ -588,6 +588,8 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .relay-equal-cells{grid-template-columns:repeat(9,minmax(0,1fr))}
   .core-wayfinding-numbers p{font-size:7.6vw;line-height:1}
   .relay-number-cells{grid-template-columns:repeat(10,minmax(0,1fr));row-gap:.08em}
-  .core-wayfinding-arrows p{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));font-size:9vw;line-height:1;white-space:normal}
+  .core-wayfinding-arrows p{display:grid;width:100%;grid-template-columns:repeat(5,minmax(0,1fr));font-size:11vw;line-height:1;white-space:normal}
   .core-wayfinding-arrows p>span{display:block;margin-left:0;text-align:center}
+  .core-wayfinding-arrows p>span:nth-child(5n+1){text-align:left}
+  .core-wayfinding-arrows p>span:nth-child(5n){text-align:right}
 }
