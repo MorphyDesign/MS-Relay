@@ -25,7 +25,7 @@ function updateTester(){
 updateTester();
 
 const pairTesterUpdates=[];
-document.querySelectorAll(".relay-pair-unit").forEach(unit=>{
+document.querySelectorAll(".relay-pair-unit").forEach((unit,index)=>{
   const text=unit.querySelector(".relay-pair-text");
   const size=unit.querySelector('[data-pair-control="size"]');
   const weight=unit.querySelector('[data-pair-control="weight"]');
@@ -33,6 +33,11 @@ document.querySelectorAll(".relay-pair-unit").forEach(unit=>{
   const sizeValue=unit.querySelector('[data-pair-value="size"]');
   const weightValue=unit.querySelector('[data-pair-value="weight"]');
   const trackingValue=unit.querySelector('[data-pair-value="tracking"]');
+  if(window.matchMedia("(min-width: 901px) and (max-width: 1599px)").matches){
+    size.value="40";
+    weight.value=index===0?"400":"750";
+    tracking.value="0";
+  }
   function updatePairTester(){
     const displaySize=Math.max(20,Number(size.value)*responsiveTypeScale());
     text.style.setProperty("--pair-size",displaySize+"px");

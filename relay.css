@@ -605,7 +605,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 @media(max-width:650px){.portfolio-cover{min-height:max(300px,calc(49svh - 100px))}}
 
 /* The opening cover follows an explicit two-sided page gutter. */
-.portfolio-cover{padding-right:clamp(24px,4vw,64px);padding-left:clamp(24px,4vw,64px)}
+.portfolio-cover{padding-right:var(--pad);padding-left:var(--pad)}
 .portfolio-cover h2{box-sizing:border-box;width:100%;max-width:100%;word-break:normal;overflow-wrap:normal}
 
 /* Permanent page-edge contract: animated text wraps inside the cover rather
@@ -777,3 +777,43 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .airport-study-symbols{font-size:1em}
   .airport-sequence-grid{--airport-pair-size:8vw}
 }
+
+/* Laptop-only review range. Mobile and large desktop remain locked. */
+.nav-contact{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  margin-block:-5px;
+  padding:4px 10px;
+  border:1px solid #101010;
+  border-radius:999px;
+  background:#101010;
+  color:var(--bg);
+}
+@media(max-width:650px){
+  .site-header nav{display:flex}
+  .site-header nav a:not(.nav-contact){display:none}
+}
+@media(min-width:901px) and (max-width:1599px){
+  .portfolio-profile{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    justify-content:start;
+    column-gap:40px;
+  }
+  .portfolio-profile article{width:100%;max-width:none}
+  .hero h1{
+    margin-top:110px;
+    font-size:15.5vw;
+  }
+  .hero p{margin-bottom:50px}
+  .numeral-study-row p{font-size:11.664vw}
+  .numeral-study-row:first-child p>b:first-child{transform:translateX(.16em)}
+  .airport-study-display{font-size:14.28vw}
+}
+@media(min-width:1600px){
+  .airport-study-display{font-size:min(16.1vw,322px)}
+}
+
+.laptop-only-break{display:none}
+@media(min-width:901px) and (max-width:1599px){.laptop-only-break{display:block}}
