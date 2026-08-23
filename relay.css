@@ -538,6 +538,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   /* Restore the text-to-panel proportions of the full-size signage while
      keeping every long label inside the viewport. */
   .signage-application-sign,.directional-sign{height:21vw}
+  .directional-signage .directional-sign{height:17vw;padding:5vw 2.5vw 2vw}
 
   .relay-cta a{font-size:clamp(20px,5.9vw,32px);white-space:nowrap;overflow-wrap:normal!important}
 }
