@@ -383,7 +383,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 @media(max-width:650px){
   html,body{max-width:100%;overflow-x:clip}
   main,.wayfinding-demo,.wayfinding-display,.core-wayfinding-rows,.weight-system-stage,.airport-study-display,.signage-application-stack,.directional-signage-stack{min-width:0;max-width:100%}
-  .wayfinding-display{font-size:25vw}
+  .wayfinding-display{font-size:19vw}
   .core-wayfinding-row{grid-template-columns:48px minmax(0,1fr)}
   .core-wayfinding-label{padding-right:6px}
   .core-wayfinding-row p{min-width:0;overflow:hidden}
