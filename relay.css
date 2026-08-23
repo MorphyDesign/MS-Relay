@@ -574,3 +574,6 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
    Its section height now follows its content instead of reserving 70svh. */
 .tester{min-height:0}
 .tester-text{flex:0 0 auto;min-height:0;padding-bottom:var(--pad)}
+
+/* Keep the full weight list clear of both edges at every viewport size. */
+.weight-system-list{padding-right:clamp(28px,3vw,58px);padding-left:clamp(28px,3vw,58px)}
