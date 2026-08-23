@@ -458,7 +458,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .directional-sign-heathrow{width:75%;max-width:75%}
   .directional-sign-split>div{min-width:0}
 }
-@media(min-width:651px) and (max-width:1200px){
+@media(min-width:651px) and (max-width:1440px){
   .pictogram-grid b,.pictogram-grid span[data-symbol="\E02D"] b{font-size:16.45vw}
   .pictogram-grid span{min-height:23vw}
   .signage-application-underground b i:first-child{font-size:.84em}
@@ -506,3 +506,38 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
    empty space: approximately thirty percent shorter at every breakpoint. */
 .portfolio-cover{min-height:70svh}
 @media(max-width:650px){.portfolio-cover{min-height:49svh}}
+
+/* Unified responsive text-grid margins. Every descriptive column starts on
+   the same content line instead of receiving one-off first-column offsets. */
+@media(max-width:1440px){
+  .system-alignment-copy,.transport-lines-copy,.relay-modules-intro,.numeral-study-copy,.airport-study-copy{width:100%;margin-left:0;column-gap:clamp(14px,2vw,28px)}
+  .system-alignment-copy>p,.system-alignment-copy>p:first-child,.transport-lines-copy>p,.transport-lines-copy>p:first-child,.relay-modules-intro>p,.relay-modules-intro>p:first-child,.numeral-study-copy>p,.numeral-study-copy>p:first-child,.airport-study-copy>p,.airport-study-copy>p:first-child{box-sizing:border-box;width:100%;max-width:none;padding-left:0}
+  .pictogram-poster-copy{width:100%;padding-right:var(--pad);padding-left:var(--pad);column-gap:clamp(14px,2vw,28px)}
+  .pictogram-poster-copy>p,.pictogram-poster-copy>p:first-child{width:100%;max-width:none;padding-right:0;padding-left:0}
+  .weight-system-copy{width:50%;padding-left:var(--pad);column-gap:clamp(14px,2vw,28px)}
+  .weight-system-copy>p,.weight-system-copy>p:first-child{width:100%;max-width:none;padding-left:0}
+}
+
+@media(max-width:650px){
+  .weight-system-copy{width:100%;padding-right:var(--pad);padding-left:var(--pad)}
+
+  /* Keep the large specimens proportional, but fit them to the shared page
+     margin without reflowing their internal composition. */
+  .wayfinding-display{font-size:22vw}
+  .hero h1{font-size:20.5vw;line-height:.98}
+  .wayfinding-signs .sign-museum .direction-arrow-small{font-size:8cqw}
+
+  /* The tester should end with its content, not a clipping mask followed by
+     an empty reserved area. */
+  .tester-text{height:auto;min-height:0;max-height:none;overflow:visible;padding-bottom:32px}
+
+  .airport-sequence-full{font-size:18.5vw;line-height:1.08;letter-spacing:-.035em}
+  .airport-sequence-full p{height:1.08em;line-height:1.08}
+  .airport-sequence-full .airport-sequence-pictograms{font-size:1em;line-height:1.08}
+
+  /* Restore the text-to-panel proportions of the full-size signage while
+     keeping every long label inside the viewport. */
+  .signage-application-sign,.directional-sign{height:21vw}
+
+  .relay-cta a{font-size:clamp(20px,5.9vw,32px);white-space:nowrap;overflow-wrap:normal!important}
+}
