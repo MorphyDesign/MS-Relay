@@ -459,8 +459,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .directional-sign-split>div{min-width:0}
 }
 @media(min-width:651px) and (max-width:1200px){
-  .pictogram-grid b{font-size:18.8vw}
-  .pictogram-grid span[data-symbol="\E02D"] b{font-size:15vw}
+  .pictogram-grid b,.pictogram-grid span[data-symbol="\E02D"] b{font-size:16.45vw}
   .pictogram-grid span{min-height:23vw}
   .signage-application-underground b i:first-child{font-size:.84em}
 }
