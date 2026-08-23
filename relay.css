@@ -624,7 +624,11 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .portfolio-cover h2{font-size:clamp(22px,7vw,44px)}
   .portfolio-name-typewriter{width:100%}
 
-  .core-wayfinding-uppercase p{font-size:8.5vw;letter-spacing:.015em}
+  /* The 14-character uppercase row must remain inside the shared page gutter. */
+  .core-wayfinding-uppercase p{font-size:7.35vw;letter-spacing:.012em}
+  /* Use the same vertical rhythm within and between the outlined/black rows. */
+  .core-wayfinding-enclosed .relay-equal-cells{row-gap:.14em}
+  .core-wayfinding-enclosed .core-circled-line+.core-circled-line{margin-top:.14em}
   .core-wayfinding-arrows p{grid-template-columns:repeat(10,minmax(0,1fr));font-size:9.5vw}
   .core-wayfinding-arrows p>span:first-child{text-align:left}
   .core-wayfinding-arrows p>span:last-child{text-align:right}
