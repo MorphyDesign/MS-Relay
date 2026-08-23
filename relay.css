@@ -538,6 +538,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   /* Restore the text-to-panel proportions of the full-size signage while
      keeping every long label inside the viewport. */
   .signage-application-sign,.directional-sign{height:21vw}
+  .signage-applications .signage-application-sign{min-height:0;justify-content:center;padding:5vw 2.5vw 2vw;text-align:center}
   .directional-signage .directional-sign{height:17vw;padding:5vw 2.5vw 2vw}
   .directional-signage .directional-sign-waterloo,.directional-signage .directional-sign-heathrow{justify-content:center;text-align:center}
   .directional-signage .directional-sign-split>div,.directional-signage .directional-sign-split>div+div{justify-content:center;text-align:center}
