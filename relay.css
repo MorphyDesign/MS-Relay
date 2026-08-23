@@ -595,4 +595,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .core-wayfinding-arrows p>span{display:block;margin-left:0;text-align:center}
   .core-wayfinding-arrows p>span:nth-child(5n+1){text-align:left}
   .core-wayfinding-arrows p>span:nth-child(5n){text-align:right}
+
+  .wayfinding-display{width:100%;justify-content:space-between;gap:0;font-size:26vw}
+  .hero h1{font-size:24.5vw}
 }
