@@ -279,6 +279,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 .airport-study-symbols span+span{margin-left:-.08em}
 .airport-study-symbols span{display:inline-grid;place-items:center;width:.9em;height:.9em;font-size:1.16em;line-height:1}
 @media(max-width:650px){.airport-study{min-height:0;padding-block:26px 54px}.airport-study-copy{grid-template-columns:1fr;gap:14px;margin-bottom:58px}.airport-study-copy p{font-size:10px}.airport-study-display{font-size:19.2vw}}
+@media(max-width:650px){.airport-study-display{width:100%;max-width:100%;font-size:13.5vw}.airport-study-display>p,.airport-study-symbols{max-width:100%;overflow:visible}}
 .airport-sequence{min-height:100svh;padding:clamp(28px,3vw,58px) 0 clamp(52px,6vw,112px);border-bottom:var(--line);overflow:hidden}
 .airport-sequence-copy{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:0;margin-bottom:clamp(64px,6vw,116px)}
 .airport-sequence-grid{display:grid;grid-template-columns:2fr 1fr 1fr;column-gap:0}
@@ -396,7 +397,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .core-wayfinding-arrows p{font-size:6.5vw}
   .relay-equal-cells,.relay-number-cells{max-width:100%}
   .weight-system-list,.weight-system-glyph{box-sizing:border-box;width:100%;max-width:100%;overflow:hidden}
-  .airport-study-display{font-size:15vw}
+  .airport-study-display{font-size:13.5vw}
   .airport-sequence-compact{font-size:7.2vw}
   .transport-lines{min-height:0;padding-bottom:42px}
   .transport-lines-copy{margin-bottom:42px}
