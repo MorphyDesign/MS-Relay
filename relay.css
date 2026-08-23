@@ -601,7 +601,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 }
 
 /* Remove 100px of unused space from the bottom of the opening white cover. */
-.portfolio-cover{min-height:max(300px,calc(70svh - 100px))}
+.portfolio-cover{min-height:max(560px,100svh)}
 @media(max-width:650px){.portfolio-cover{min-height:max(300px,calc(49svh - 100px))}}
 
 /* The opening cover follows an explicit two-sided page gutter. */
@@ -700,7 +700,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 .relay-cta a .email-arrow{
   display:inline;
   position:relative;
-  top:.08em;
+  top:.14em;
   font:inherit!important;
   letter-spacing:inherit;
   vertical-align:baseline;
@@ -742,6 +742,11 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   transform:scale(1.06);
   transform-origin:left center;
 }
+.airport-sequence-full .airport-sequence-arrow{
+  display:inline-block;
+  margin-left:-.12em;
+  margin-right:.12em;
+}
 .airport-sequence-full p:nth-child(5){margin-top:0}
 
 /* Both smaller airport/arrow pairs use the exact same size. */
@@ -764,7 +769,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .airport-sequence-compact{padding-left:var(--pad)}
   .airport-sequence-compact p{height:1.22em;line-height:1.22}
   .airport-sequence-compact .airport-sequence-pictograms{margin-top:-.08em}
-  .airport-sequence .airport-sequence-minimal{padding-top:2.342em}
+  .airport-sequence .airport-sequence-minimal{padding-top:0}
 }
 
 @media(max-width:650px){

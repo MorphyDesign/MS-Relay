@@ -11,7 +11,8 @@ function responsiveTypeScale(){
 }
 
 function updateTester(){
-  const displaySize=Math.max(28,Number(sizeRange.value)*responsiveTypeScale());
+  const testerScale=window.innerWidth>=901?1:responsiveTypeScale();
+  const displaySize=Math.max(28,Number(sizeRange.value)*testerScale);
   testerText.style.fontWeight=weightSelect.value;
   testerText.style.fontSize=displaySize+"px";
   testerText.style.letterSpacing=trackingRange.value+"px";
