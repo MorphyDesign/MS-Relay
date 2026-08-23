@@ -289,7 +289,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 .airport-sequence-full,.airport-sequence-compact,.airport-sequence-minimal{min-width:0;font-family:Relay,sans-serif;font-weight:900;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0}
 .airport-sequence-full{padding-left:var(--pad);font-size:clamp(70px,8.6vw,165px);line-height:1.16;letter-spacing:-.035em}
 .airport-sequence-full p{height:1.16em;margin:0;font-size:1em;line-height:1.16;white-space:nowrap}
-.airport-sequence-full .airport-sequence-pictograms{font-size:1.08em;line-height:1.074;letter-spacing:.01em}
+.airport-sequence-full .airport-sequence-pictograms{font-size:1em;line-height:1.16;letter-spacing:.01em}
 .airport-sequence-up-arrow{font:inherit;font-weight:1000}
 .airport-sequence-full p:nth-child(4){margin-top:.18em}
 .airport-sequence-full p:nth-child(5){margin-top:.05em}
