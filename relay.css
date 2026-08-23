@@ -482,21 +482,21 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 /* The opening sign family is one fixed composition. On phones its geometry
    stays intact and only the module, type and symbol scale changes. */
 @media(max-width:650px){
-  .wayfinding-demo{--sign-module-height:22vw;width:100%;padding-top:20px}
-  .wayfinding-signs{display:flex;gap:5vw;width:100%;margin-top:38px}
+  .wayfinding-demo{--sign-module-height:12.5cqw;width:100%;padding-top:20px}
+  .wayfinding-signs{container-type:inline-size;display:flex;gap:4cqw;width:100%;margin-top:38px}
   .wayfinding-sign-row{height:var(--sign-module-height);grid-template-columns:minmax(0,1fr) minmax(0,3fr);margin:0}
   .wayfinding-sign-row:nth-child(2){grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-left:25%}
   .wayfinding-sign-row-last{grid-template-columns:1fr;width:37.5%;margin-left:62.5%}
   .wayfinding-sign-row-last .wayfinding-sign-spacer{display:none}
-  .wayfinding-sign-row .direction-sign{box-sizing:border-box;width:auto;max-width:none;height:100%;min-width:0;min-height:0;overflow:hidden;padding:3vw;line-height:.92}
+  .wayfinding-sign-row .direction-sign{box-sizing:border-box;width:auto;max-width:none;height:100%;min-width:0;min-height:0;overflow:hidden;padding:2.5cqw;line-height:.92}
   .wayfinding-sign-row>:nth-child(2){border-left:0}
   .wayfinding-sign-row-last .sign-jubilee{border-left:var(--line)}
-  .wayfinding-signs .sign-exit{font-size:5.3vw}
-  .wayfinding-signs .sign-museum{gap:.08em;padding-right:2vw;font-size:5.4vw;letter-spacing:-.045em}
-  .wayfinding-signs .sign-museum .direction-arrow-small{font-size:9.5vw}
-  .wayfinding-signs .sign-way-out,.wayfinding-signs .sign-shard,.wayfinding-signs .sign-jubilee{align-items:flex-start;gap:.12em;padding-top:3.4vw;font-size:4vw;line-height:1.03}
+  .wayfinding-signs .sign-exit{font-size:3.4cqw}
+  .wayfinding-signs .sign-museum{gap:.14em;padding-right:1.4cqw;font-size:5.5cqw;letter-spacing:-.045em}
+  .wayfinding-signs .sign-museum .direction-arrow-small{font-size:10.2cqw}
+  .wayfinding-signs .sign-way-out,.wayfinding-signs .sign-shard,.wayfinding-signs .sign-jubilee{align-items:flex-start;gap:.18em;padding-top:2cqw;font-size:3.4cqw;line-height:1.03}
   .wayfinding-signs .direction-arrow-tiny{align-self:flex-start;width:1em;height:1em;margin-top:0;font-size:1em;line-height:1}
-  .wayfinding-sign-row-number{--number-sign-gap:5vw;display:flex;width:max-content;height:var(--sign-module-height);gap:var(--number-sign-gap);margin-left:auto}
-  .wayfinding-sign-row-number .sign-number{flex:0 0 var(--sign-module-height);width:var(--sign-module-height);height:var(--sign-module-height);justify-content:center;padding:2vw;font-size:12vw;text-align:center}
+  .wayfinding-sign-row-number{--number-sign-gap:4cqw;display:flex;width:max-content;height:var(--sign-module-height);gap:var(--number-sign-gap);margin-left:auto}
+  .wayfinding-sign-row-number .sign-number{flex:0 0 var(--sign-module-height);width:var(--sign-module-height);height:var(--sign-module-height);justify-content:center;padding:1cqw;font-size:8.2cqw;text-align:center}
   .wayfinding-sign-row-number .sign-number+.sign-number{border-left:var(--line)}
 }
