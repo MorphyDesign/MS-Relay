@@ -607,3 +607,32 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 /* The opening cover follows an explicit two-sided page gutter. */
 .portfolio-cover{padding-right:clamp(24px,4vw,64px);padding-left:clamp(24px,4vw,64px)}
 .portfolio-cover h2{box-sizing:border-box;width:100%;max-width:100%;word-break:normal;overflow-wrap:normal}
+
+/* Permanent page-edge contract: animated text wraps inside the cover rather
+   than temporarily extending beyond its right gutter. */
+.portfolio-name-typewriter{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere}
+
+/* Technical labels occupy a real inter-row band and are centred within it. */
+.numeral-study-rows{gap:0}
+.numeral-study-meta{height:clamp(50px,6vw,110px);margin:0;transform:none}
+
+/* The Heathrow symbols use the same scale as the standalone plane/arrow pair. */
+.airport-study-symbols{height:1.1em;font-size:clamp(42px,4.4vw,84px)}
+.airport-study-symbols span{width:1em;height:1em;font-size:1em}
+
+@media(max-width:650px){
+  .portfolio-name-typewriter{width:100%}
+
+  .core-wayfinding-uppercase p{font-size:8.5vw;letter-spacing:.015em}
+  .core-wayfinding-arrows p{grid-template-columns:repeat(10,minmax(0,1fr));font-size:9.5vw}
+  .core-wayfinding-arrows p>span:first-child{text-align:left}
+  .core-wayfinding-arrows p>span:last-child{text-align:right}
+
+  .numeral-study-meta{height:48px;margin:0;font-size:7px;transform:none}
+
+  .weight-system-list{align-items:flex-start;min-height:0;padding:28px;font-size:inherit}
+  .weight-system-list li{max-width:100%;font-size:9.5vw;letter-spacing:-.045em}
+
+  .airport-sequence-full .airport-sequence-pictograms{font-size:1.08em}
+  .airport-study-symbols{height:1.1em;font-size:8vw}
+}
