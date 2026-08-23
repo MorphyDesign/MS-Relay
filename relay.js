@@ -58,19 +58,31 @@ const kerningContext=kerningCanvas.getContext("2d");
 function renderKerning(){
   const weight=Number(kerningWeight.value);
   const requestedSize=Number(kerningSize.value);
-  const size=Math.max(32,requestedSize*responsiveTypeScale());
+  let size=Math.max(24,requestedSize*responsiveTypeScale());
   const tracking=Number(kerningTracking.value);
-  const displayTracking=tracking*responsiveTypeScale();
-  kerningLab.style.setProperty("--k-weight",weight);
-  kerningLab.style.setProperty("--k-size",size);
-  kerningLab.style.setProperty("--k-tracking",displayTracking);
+  let displayTracking=tracking*responsiveTypeScale();
   document.querySelector("#kerning-weight-output").textContent=weight;
   document.querySelector("#kerning-size-output").textContent=requestedSize;
   document.querySelector("#kerning-tracking-output").textContent=tracking;
   kerningContext.font=weight+" 1000px Relay";
   kerningContext.fontKerning="normal";
-  kerningGlyphs.replaceChildren();
   const characters=Array.from(kerningSource.value);
+  const sample=characters.slice(0,10);
+  const availableWidth=Math.max(1,kerningGlyphs.clientWidth*.97);
+  const sampleWidth=sample.reduce((total,character)=>{
+    const metrics=kerningContext.measureText(character);
+    const inkWidth=(metrics.actualBoundingBoxLeft+metrics.actualBoundingBoxRight)/1000*size;
+    return total+Math.max(18,inkWidth+displayTracking+1);
+  },0);
+  if(sample.length===10&&sampleWidth>availableWidth){
+    const fitScale=availableWidth/sampleWidth;
+    size=Math.max(24,size*fitScale);
+    displayTracking*=fitScale;
+  }
+  kerningLab.style.setProperty("--k-weight",weight);
+  kerningLab.style.setProperty("--k-size",size);
+  kerningLab.style.setProperty("--k-tracking",displayTracking);
+  kerningGlyphs.replaceChildren();
   characters.forEach((character,index)=>{
     const cell=document.createElement("div");
     const value=document.createElement("span");
