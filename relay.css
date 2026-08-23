@@ -443,6 +443,10 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 @media(max-width:900px){.signage-applications,.directional-signage{--signage-type-size:5vw;--signage-icon-size:5.9vw}}
 @media(max-width:650px){.signage-applications,.directional-signage{--signage-type-size:5.6vw;--signage-icon-size:6.5vw}.signage-application-stack,.directional-signage-stack{gap:24px}}
 @media(max-width:650px){
+  .signage-applications{--signage-type-size:4.6vw;--signage-icon-size:5.4vw}
+  .signage-application-sign{gap:.08em;padding-right:2vw;padding-left:2vw}
+  .signage-application-sign span{flex:0 1 auto;min-width:0}
+  .signage-application-sign b{flex:0 0 auto}
   .directional-signage{--signage-type-size:4.8vw;--signage-icon-size:5.6vw}
   .directional-sign{column-gap:.1em}
   .directional-sign span{flex:0 1 auto;max-width:calc(100% - 1.1em)}
