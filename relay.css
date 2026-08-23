@@ -387,7 +387,9 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .core-wayfinding-row{grid-template-columns:48px minmax(0,1fr)}
   .core-wayfinding-label{padding-right:6px}
   .core-wayfinding-row p{min-width:0;overflow:hidden}
-  .system-alignment-display{font-size:15vw;line-height:1.08}
+  /* Preserve the desktop composition: scale the complete specimen as one
+     unit instead of reflowing or independently resizing its lines. */
+  .system-alignment-display{font-size:6.15vw;line-height:1.08}
   .system-alignment-display>div{display:flex;min-height:1.08em;white-space:nowrap;overflow:visible}
   .system-alignment-display>div>span{display:inline-block;white-space:nowrap;overflow-wrap:normal}
   .core-wayfinding-uppercase p{font-size:6.2vw;letter-spacing:.04em}
