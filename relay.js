@@ -21,6 +21,9 @@ function updateTester(){
   trackingOutput.textContent=Number(trackingRange.value)===0?"000":trackingRange.value;
 }
 
+if(window.matchMedia("(min-width: 1600px)").matches){
+  sizeRange.value="190";
+}
 [weightSelect,sizeRange,trackingRange].forEach(control=>control.addEventListener("input",updateTester));
 updateTester();
 

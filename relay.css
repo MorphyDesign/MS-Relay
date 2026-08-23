@@ -815,5 +815,15 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .airport-study-display{font-size:min(16.1vw,322px)}
 }
 
+/* Desktop/laptop scroll pass: keep anchors clear of the sticky header,
+   prevent scrollbar-width layout shifts, and avoid repainting a blurred
+   backdrop on every scroll frame. */
+@media(min-width:901px){
+  html{scrollbar-gutter:stable;scroll-padding-top:54px}
+  body{overscroll-behavior-y:none}
+  .site-header{background:var(--bg);backdrop-filter:none}
+  main>section{scroll-margin-top:54px}
+}
+
 .laptop-only-break{display:none}
 @media(min-width:901px) and (max-width:1599px){.laptop-only-break{display:block}}
