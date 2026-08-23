@@ -217,7 +217,7 @@ body{font-feature-settings:"ss01" 1}
 .departure-stage .later-trains{height:183px;font-size:20px}
 @media(max-width:760px){.departure-display{padding-inline:var(--pad)}.departure-stage{width:100%}}
 @media(max-width:650px){.wayfinding-display{font-size:28vw}.direction-sign{font-size:8.5vw}}
-.hero{min-height:110svh;justify-content:flex-start}.hero h1{margin-top:clamp(150px,18svh,300px)}.hero p{margin-top:auto}@media(max-width:650px){.hero{min-height:82svh}.hero h1{margin-top:clamp(80px,14svh,130px)}}
+.hero{min-height:110svh;justify-content:flex-start}.hero h1{margin-top:clamp(150px,18svh,300px)}.hero p{margin-top:auto}@media(max-width:650px){.hero{min-height:68svh;padding-bottom:42px}.hero h1{margin-top:clamp(68px,10svh,105px)}}
 @font-face{font-family:Relay;src:url("fonts/MSRelaySans-Thin.ttf?v=i-40-40-1");font-weight:100}
 @font-face{font-family:Relay;src:url("fonts/MSRelaySans-Extralight.ttf?v=i-40-40-1");font-weight:200}
 @font-face{font-family:Relay;src:url("fonts/MSRelaySans-Light.ttf?v=i-40-40-1");font-weight:300}
