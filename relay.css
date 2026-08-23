@@ -502,3 +502,8 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .wayfinding-sign-row-number .sign-number{flex:0 0 var(--sign-module-height);width:var(--sign-module-height);height:var(--sign-module-height);justify-content:center;padding:1cqw;font-size:8.2cqw;text-align:center}
   .wayfinding-sign-row-number .sign-number+.sign-number{border-left:var(--line)}
 }
+
+/* A tighter opening screen keeps the introduction while removing excess
+   empty space: approximately thirty percent shorter at every breakpoint. */
+.portfolio-cover{min-height:70svh}
+@media(max-width:650px){.portfolio-cover{min-height:49svh}}
