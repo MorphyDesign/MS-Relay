@@ -550,13 +550,13 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
    cell at desktop widths as well as at the laptop breakpoint. */
 .pictogram-grid b,
 .pictogram-grid span[data-symbol="\E02D"] b{
-  font-size:clamp(126px,16.45vw,315px);
+  font-size:clamp(120px,20vw,380px);
 }
 
 @media(max-width:650px){
   /* A true 30% reduction on mobile, without the desktop clamp minimum. */
   .pictogram-grid b,
-  .pictogram-grid span[data-symbol="\E02D"] b{font-size:16.45vw}
+  .pictogram-grid span[data-symbol="\E02D"] b{font-size:clamp(100px,40vw,190px)}
 
   /* Let the first tester finish immediately after its text. */
   .tester{min-height:0}
