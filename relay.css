@@ -545,3 +545,23 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 
   .relay-cta a{font-size:clamp(20px,5.9vw,32px);white-space:nowrap;overflow-wrap:normal!important}
 }
+
+/* Final pictogram safety scale: keep the entire MS Relay glyph inside every
+   cell at desktop widths as well as at the laptop breakpoint. */
+.pictogram-grid b,
+.pictogram-grid span[data-symbol="\E02D"] b{
+  font-size:clamp(126px,16.45vw,315px);
+}
+
+@media(max-width:650px){
+  /* A true 30% reduction on mobile, without the desktop clamp minimum. */
+  .pictogram-grid b,
+  .pictogram-grid span[data-symbol="\E02D"] b{font-size:16.45vw}
+
+  /* Let the first tester finish immediately after its text. */
+  .tester{min-height:0}
+  .tester-text{flex:0 0 auto;padding:24px var(--pad) 16px}
+
+  /* The opening title may use more of the available width on mobile. */
+  .hero h1{font-size:23vw;line-height:.98}
+}
