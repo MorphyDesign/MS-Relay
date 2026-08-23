@@ -636,3 +636,23 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .airport-sequence-full .airport-sequence-pictograms{font-size:1.08em}
   .airport-study-symbols{height:1.1em;font-size:8vw}
 }
+
+/* Permanent arrow rule: every directional glyph uses MS Relay Black,
+   independently of the surrounding text weight. */
+.direction-arrow,
+.core-wayfinding-arrows p,
+.airport-study-symbols span:last-child,
+.airport-sequence-up-arrow,
+.airport-sequence-arrow,
+.airport-sequence-compact .airport-sequence-pictograms span:last-child,
+.airport-sequence-minimal span:last-child,
+.signage-black-arrow,
+.signage-application-sign b,
+.directional-sign b,
+.global-black-arrow,
+.pictogram-grid [data-symbol="↑"] b,
+.pictogram-grid [data-symbol="↗"] b,
+.pictogram-grid [data-symbol="⮊"] b{
+  font-family:Relay,sans-serif;
+  font-weight:900!important;
+}
