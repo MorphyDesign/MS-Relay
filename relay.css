@@ -564,4 +564,8 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 
   /* The opening title may use more of the available width on mobile. */
   .hero h1{font-size:23vw;line-height:.98}
+
+  /* Preserve the fixed five-line composition while fitting its widest row
+     between the shared left and right page margins. */
+  .airport-sequence-full{font-size:16vw}
 }
