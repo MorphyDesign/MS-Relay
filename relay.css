@@ -420,6 +420,20 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 @media(max-width:768px){
   .character-grid span:nth-child(n+75){display:none}
 }
+
+/* Fit the complete core character specimen inside narrow screens. */
+@media(max-width:650px){
+  .core-wayfinding-row{grid-template-columns:44px minmax(0,1fr)}
+  .core-wayfinding-row p{box-sizing:border-box;width:100%;max-width:100%;overflow:hidden}
+  .core-wayfinding-uppercase p{font-size:5.8vw;line-height:1.08;letter-spacing:.025em;white-space:nowrap}
+  .core-wayfinding-lowercase p{font-size:3.55vw;letter-spacing:0;white-space:nowrap}
+  .core-wayfinding-enclosed p{font-size:3.35vw}
+  .core-wayfinding-numbers p{font-size:3.45vw}
+  .core-wayfinding-arrows p{font-size:5.8vw;letter-spacing:0;white-space:nowrap}
+  .relay-equal-cells{display:grid;width:100%;grid-template-columns:repeat(18,minmax(0,1fr))}
+  .relay-number-cells{display:grid;width:100%;grid-template-columns:repeat(20,minmax(0,1fr))}
+  .relay-equal-cells>b,.relay-number-cells>b{width:auto;min-width:0}
+}
 @media(min-width:651px) and (max-width:900px){
   html,body{max-width:100%;overflow-x:clip}
   main,.wayfinding-demo,.wayfinding-signs,.core-wayfinding-rows,.signage-application-stack,.directional-signage-stack{min-width:0;max-width:100%}
