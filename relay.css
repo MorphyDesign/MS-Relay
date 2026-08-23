@@ -603,3 +603,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 /* Remove 100px of unused space from the bottom of the opening white cover. */
 .portfolio-cover{min-height:max(300px,calc(70svh - 100px))}
 @media(max-width:650px){.portfolio-cover{min-height:max(300px,calc(49svh - 100px))}}
+
+/* The opening cover follows an explicit two-sided page gutter. */
+.portfolio-cover{padding-right:clamp(24px,4vw,64px);padding-left:clamp(24px,4vw,64px)}
+.portfolio-cover h2{box-sizing:border-box;width:100%;max-width:100%;word-break:normal;overflow-wrap:normal}
