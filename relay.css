@@ -376,3 +376,98 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 @media(max-width:650px){.core-wayfinding-set{padding-block:28px 38px}.core-wayfinding-copy{margin-bottom:46px}.core-wayfinding-row{grid-template-columns:62px minmax(0,1fr)}.core-wayfinding-label{font-size:7px}.core-wayfinding-uppercase p{font-size:9vw;line-height:1.04}.core-wayfinding-lowercase p{font-size:5.8vw;overflow-wrap:anywhere}.core-wayfinding-enclosed p{font-size:7vw}.core-wayfinding-numbers p{font-size:7.7vw}.core-wayfinding-arrows p{font-size:9.5vw}}
 @media(max-width:900px){.tester-text{overflow-wrap:anywhere;word-break:normal}.kerning-glyphs{overflow:hidden}.relay-cta a{overflow-wrap:anywhere}.portfolio-profile{min-height:auto}.signage-overview-vector{min-width:0}.section-heading h2{overflow-wrap:anywhere}}
 @media(max-width:650px){.site-header{gap:12px;padding-block:14px;font-size:12px}.kerning-source{font-size:14px}.kerning-glyph{height:calc(var(--k-size) * 1px + 34px)}.kerning-glyph-value{font-size:8px}.tester-text{padding-top:24px;padding-bottom:48px;line-height:1.08}.relay-pair-unit{min-height:62svh}.relay-pair-text{line-height:1.1}.relay-cta a{line-height:1}.signage-overview-vector{width:100%;height:auto}.signage-overview{overflow:hidden}}
+
+/* Mobile fit audit: keep every composition inside the viewport without
+   changing the desktop art direction. */
+@media(max-width:650px){
+  html,body{max-width:100%;overflow-x:clip}
+  main,.wayfinding-demo,.wayfinding-display,.core-wayfinding-rows,.weight-system-stage,.airport-study-display,.signage-application-stack,.directional-signage-stack{min-width:0;max-width:100%}
+  .wayfinding-display{font-size:25vw}
+  .core-wayfinding-row{grid-template-columns:48px minmax(0,1fr)}
+  .core-wayfinding-label{padding-right:6px}
+  .core-wayfinding-row p{min-width:0;overflow:hidden}
+  .system-alignment-display{font-size:15vw;line-height:1.08}
+  .system-alignment-display>div{display:flex;min-height:1.08em;white-space:nowrap;overflow:visible}
+  .system-alignment-display>div>span{display:inline-block;white-space:nowrap;overflow-wrap:normal}
+  .core-wayfinding-uppercase p{font-size:6.2vw;letter-spacing:.04em}
+  .core-wayfinding-lowercase p{font-size:3.8vw;white-space:nowrap}
+  .core-wayfinding-enclosed p{font-size:3.6vw}
+  .core-wayfinding-numbers p{font-size:3.75vw}
+  .core-wayfinding-arrows p{font-size:6.5vw}
+  .relay-equal-cells,.relay-number-cells{max-width:100%}
+  .weight-system-list,.weight-system-glyph{box-sizing:border-box;width:100%;max-width:100%;overflow:hidden}
+  .airport-study-display{font-size:15vw}
+  .airport-sequence-compact{font-size:7.2vw}
+  .transport-lines{min-height:0;padding-bottom:42px}
+  .transport-lines-copy{margin-bottom:42px}
+  .transport-lines-list{gap:18px}
+  .character-grid span:nth-child(n+61){display:none}
+  .character-preview{height:42svh}
+  .tester-text{max-height:40svh;overflow:hidden}
+  .relay-pair-text{max-height:42svh;overflow:hidden}
+  .signage-applications,.directional-signage{--signage-type-size:5.6vw;--signage-icon-size:6.5vw}
+  .signage-application-sign,.directional-sign{box-sizing:border-box;width:100%;max-width:100%;min-width:0;height:28vw;min-height:0;font-size:var(--signage-type-size)}
+  .signage-application-sign span,.directional-sign span{min-width:0}
+  .signage-application-sign b,.directional-sign b{flex:0 0 auto;font-size:var(--signage-icon-size)}
+  .directional-sign-heathrow{width:75%;max-width:75%}
+  .directional-sign-split>div{min-width:0}
+  .directional-sign-split span{font-size:.92em}
+}
+@media(min-width:651px) and (max-width:900px){
+  html,body{max-width:100%;overflow-x:clip}
+  main,.wayfinding-demo,.wayfinding-signs,.core-wayfinding-rows,.signage-application-stack,.directional-signage-stack{min-width:0;max-width:100%}
+  .wayfinding-sign-row{min-width:0}
+  .wayfinding-sign-row .direction-sign{box-sizing:border-box;width:auto;max-width:100%;min-width:0}
+  .sign-exit,.sign-way-out,.sign-shard,.sign-jubilee{font-size:3.25vw}
+  .sign-museum{font-size:4.6vw}
+  .sign-museum .direction-arrow-small{font-size:8.2vw}
+  .core-wayfinding-row{grid-template-columns:72px minmax(0,1fr)}
+  .core-wayfinding-row p{min-width:0;overflow:hidden}
+  .core-wayfinding-uppercase p{font-size:5.5vw}
+  .core-wayfinding-lowercase p{font-size:3.7vw}
+  .core-wayfinding-enclosed p{font-size:3.75vw}
+  .core-wayfinding-numbers p{font-size:3.75vw}
+  .signage-applications,.directional-signage{--signage-type-size:5vw;--signage-icon-size:5.8vw}
+  .signage-application-sign,.directional-sign{box-sizing:border-box;width:100%;max-width:100%;min-width:0}
+  .signage-application-sign span,.directional-sign span{min-width:0}
+  .directional-sign-heathrow{width:75%;max-width:75%}
+  .directional-sign-split>div{min-width:0}
+}
+@media(min-width:651px) and (max-width:1200px){
+  .pictogram-grid b{font-size:18.8vw}
+  .pictogram-grid span{min-height:23vw}
+}
+
+/* Harmonised application-sign proportions across desktop and responsive views. */
+.signage-applications,.directional-signage{--signage-type-size:clamp(38px,4.7vw,90px);--signage-icon-size:clamp(44px,5.5vw,106px)}
+@media(max-width:900px){.signage-applications,.directional-signage{--signage-type-size:5vw;--signage-icon-size:5.9vw}}
+@media(max-width:650px){.signage-applications,.directional-signage{--signage-type-size:5.6vw;--signage-icon-size:6.5vw}.signage-application-stack,.directional-signage-stack{gap:24px}}
+@media(max-width:650px){
+  .directional-signage{--signage-type-size:4.8vw;--signage-icon-size:5.6vw}
+  .directional-sign{column-gap:.1em}
+  .directional-sign span{flex:0 1 auto;max-width:calc(100% - 1.1em)}
+  .directional-sign-split>div{gap:.08em;padding-inline:1.4vw}
+  .directional-sign-split span{max-width:none;font-size:.9em}
+}
+
+/* The opening sign family is one fixed composition. On phones its geometry
+   stays intact and only the module, type and symbol scale changes. */
+@media(max-width:650px){
+  .wayfinding-demo{--sign-module-height:22vw;width:100%;padding-top:20px}
+  .wayfinding-signs{display:flex;gap:5vw;width:100%;margin-top:38px}
+  .wayfinding-sign-row{height:var(--sign-module-height);grid-template-columns:minmax(0,1fr) minmax(0,3fr);margin:0}
+  .wayfinding-sign-row:nth-child(2){grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-left:25%}
+  .wayfinding-sign-row-last{grid-template-columns:1fr;width:37.5%;margin-left:62.5%}
+  .wayfinding-sign-row-last .wayfinding-sign-spacer{display:none}
+  .wayfinding-sign-row .direction-sign{box-sizing:border-box;width:auto;max-width:none;height:100%;min-width:0;min-height:0;overflow:hidden;padding:3vw;line-height:.92}
+  .wayfinding-sign-row>:nth-child(2){border-left:0}
+  .wayfinding-sign-row-last .sign-jubilee{border-left:var(--line)}
+  .wayfinding-signs .sign-exit{font-size:5.3vw}
+  .wayfinding-signs .sign-museum{gap:.08em;padding-right:2vw;font-size:5.4vw;letter-spacing:-.045em}
+  .wayfinding-signs .sign-museum .direction-arrow-small{font-size:9.5vw}
+  .wayfinding-signs .sign-way-out,.wayfinding-signs .sign-shard,.wayfinding-signs .sign-jubilee{align-items:flex-start;gap:.12em;padding-top:3.4vw;font-size:4vw;line-height:1.03}
+  .wayfinding-signs .direction-arrow-tiny{align-self:flex-start;width:1em;height:1em;margin-top:0;font-size:1em;line-height:1}
+  .wayfinding-sign-row-number{--number-sign-gap:5vw;display:flex;width:max-content;height:var(--sign-module-height);gap:var(--number-sign-gap);margin-left:auto}
+  .wayfinding-sign-row-number .sign-number{flex:0 0 var(--sign-module-height);width:var(--sign-module-height);height:var(--sign-module-height);justify-content:center;padding:2vw;font-size:12vw;text-align:center}
+  .wayfinding-sign-row-number .sign-number+.sign-number{border-left:var(--line)}
+}

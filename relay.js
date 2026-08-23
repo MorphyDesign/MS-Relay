@@ -7,11 +7,11 @@ const sizeOutput=document.querySelector("#size-output");
 const trackingOutput=document.querySelector("#tracking-output");
 
 function responsiveTypeScale(){
-  return Math.min(1,Math.max(.35,window.innerWidth/1200));
+  return Math.min(1,Math.max(.22,window.innerWidth/1500));
 }
 
 function updateTester(){
-  const displaySize=Math.max(34,Number(sizeRange.value)*responsiveTypeScale());
+  const displaySize=Math.max(28,Number(sizeRange.value)*responsiveTypeScale());
   testerText.style.fontWeight=weightSelect.value;
   testerText.style.fontSize=displaySize+"px";
   testerText.style.letterSpacing=trackingRange.value+"px";
@@ -33,7 +33,7 @@ document.querySelectorAll(".relay-pair-unit").forEach(unit=>{
   const weightValue=unit.querySelector('[data-pair-value="weight"]');
   const trackingValue=unit.querySelector('[data-pair-value="tracking"]');
   function updatePairTester(){
-    const displaySize=Math.max(24,Number(size.value)*responsiveTypeScale());
+    const displaySize=Math.max(20,Number(size.value)*responsiveTypeScale());
     text.style.setProperty("--pair-size",displaySize+"px");
     text.style.setProperty("--pair-weight",weight.value);
     text.style.setProperty("--pair-tracking",tracking.value+"px");
@@ -58,11 +58,12 @@ const kerningContext=kerningCanvas.getContext("2d");
 function renderKerning(){
   const weight=Number(kerningWeight.value);
   const requestedSize=Number(kerningSize.value);
-  const size=Math.max(42,requestedSize*responsiveTypeScale());
+  const size=Math.max(32,requestedSize*responsiveTypeScale());
   const tracking=Number(kerningTracking.value);
+  const displayTracking=tracking*responsiveTypeScale();
   kerningLab.style.setProperty("--k-weight",weight);
   kerningLab.style.setProperty("--k-size",size);
-  kerningLab.style.setProperty("--k-tracking",tracking);
+  kerningLab.style.setProperty("--k-tracking",displayTracking);
   document.querySelector("#kerning-weight-output").textContent=weight;
   document.querySelector("#kerning-size-output").textContent=requestedSize;
   document.querySelector("#kerning-tracking-output").textContent=tracking;
@@ -84,8 +85,8 @@ function renderKerning(){
     const inkWidth=(metrics.actualBoundingBoxLeft+metrics.actualBoundingBoxRight)/1000*size;
     const usesNativeSidebearings=character==="i"||character==="l";
     const width=usesNativeSidebearings
-      ?Math.max(22,metrics.width/1000*size+tracking)
-      :Math.max(22,inkWidth+tracking+1);
+      ?Math.max(18,metrics.width/1000*size+displayTracking)
+      :Math.max(18,inkWidth+displayTracking+1);
     cell.style.width=width+"px";
     const opticalShift=(metrics.width-metrics.actualBoundingBoxRight+metrics.actualBoundingBoxLeft)/2/1000*size-.5;
     glyph.style.transform=usesNativeSidebearings?"none":"translateX("+opticalShift+"px)";
@@ -440,7 +441,6 @@ function fitSystemAlignmentLines(){
     if(!text)return;
     text.style.transform="none";
     text.style.fontSize="";
-    if(window.matchMedia("(max-width: 650px)").matches)return;
     const available=line.getBoundingClientRect().width;
     if(!available)return;
     let low=12;
