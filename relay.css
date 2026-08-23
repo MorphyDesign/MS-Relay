@@ -599,3 +599,7 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .wayfinding-display{width:100%;justify-content:space-between;gap:0;font-size:26vw}
   .hero h1{font-size:24.5vw}
 }
+
+/* Remove 100px of unused space from the bottom of the opening white cover. */
+.portfolio-cover{min-height:max(300px,calc(70svh - 100px))}
+@media(max-width:650px){.portfolio-cover{min-height:max(300px,calc(49svh - 100px))}}
