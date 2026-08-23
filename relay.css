@@ -402,7 +402,6 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .transport-lines{min-height:0;padding-bottom:42px}
   .transport-lines-copy{margin-bottom:42px}
   .transport-lines-list{gap:18px}
-  .character-grid span:nth-child(n+61){display:none}
   .character-preview{height:42svh}
   .tester-text{max-height:40svh;overflow:hidden}
   .relay-pair-text{max-height:42svh;overflow:hidden}
@@ -413,6 +412,13 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   .directional-sign-heathrow{width:75%;max-width:75%}
   .directional-sign-split>div{min-width:0}
   .directional-sign-split span{font-size:.92em}
+}
+
+/* On phones the Glyphs browser is intentionally shortened to roughly half
+   of the desktop character set. The complete set remains available above
+   the mobile breakpoint. */
+@media(max-width:768px){
+  .character-grid span:nth-child(n+75){display:none}
 }
 @media(min-width:651px) and (max-width:900px){
   html,body{max-width:100%;overflow-x:clip}
