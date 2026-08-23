@@ -661,3 +661,56 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   font-family:Relay,sans-serif;
   font-weight:900!important;
 }
+
+/* Final optical alignment contract for the arrow and airport specimens. */
+.core-wayfinding-arrows p{
+  display:grid;
+  grid-template-columns:repeat(10,minmax(0,1fr));
+  align-items:center;
+  width:100%;
+  white-space:nowrap;
+}
+.core-wayfinding-arrows p>span{
+  display:grid;
+  place-items:center;
+  min-width:0;
+  margin:0;
+  font-size:1em;
+  line-height:1;
+}
+.core-wayfinding-arrows p>span:first-child{justify-items:start}
+.core-wayfinding-arrows p>span:last-child{justify-items:end;font-size:1.12em}
+
+/* In the first Heathrow composition the type is the scale reference. */
+.airport-study-symbols{
+  height:1.1em;
+  font-size:1em;
+  line-height:1.1;
+}
+.airport-study-symbols span{width:1em;height:1em;font-size:1em}
+
+/* Letter rows and pictogram rows share one baseline rhythm. */
+.airport-sequence-full p,
+.airport-sequence-full p:nth-child(4),
+.airport-sequence-full p:nth-child(5){
+  height:1.12em;
+  margin-top:0;
+  line-height:1.12;
+}
+.airport-sequence-full .airport-sequence-pictograms{
+  font-size:1.1em;
+  line-height:1.12;
+}
+
+/* Both smaller airport/arrow pairs use the exact same size. */
+.airport-sequence-grid{--airport-pair-size:clamp(42px,4.4vw,84px)}
+.airport-sequence-compact,
+.airport-sequence-minimal{font-size:var(--airport-pair-size)}
+.airport-sequence-compact .airport-sequence-pictograms,
+.airport-sequence-minimal{line-height:1.1}
+
+@media(max-width:650px){
+  .core-wayfinding-arrows p{font-size:7.6vw}
+  .airport-study-symbols{font-size:1em}
+  .airport-sequence-grid{--airport-pair-size:8vw}
+}
