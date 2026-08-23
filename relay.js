@@ -601,7 +601,9 @@ if(departureStopLists.every(list=>list.element)){
 }
 
 document.querySelectorAll(".portfolio-name-typewriter[data-typewriter-text]").forEach((typewriterText)=>{
-  const fullTypewriterText=typewriterText.dataset.typewriterText;
+  const fullTypewriterText=window.matchMedia("(max-width: 650px)").matches
+    ? (typewriterText.dataset.typewriterMobile||typewriterText.dataset.typewriterText)
+    : (typewriterText.dataset.typewriterDesktop||typewriterText.dataset.typewriterText);
   const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(reducedMotion)return;
 

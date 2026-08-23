@@ -618,11 +618,16 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 
 /* The Heathrow symbols use the same scale as the standalone plane/arrow pair. */
 .airport-study-symbols{height:1.1em;font-size:clamp(42px,4.4vw,84px)}
-.airport-study-symbols span{width:1em;height:1em;font-size:1em}
+.airport-study-symbols span{width:1em;height:1em;font-size:1.6em}
 
 @media(max-width:650px){
-  .portfolio-cover h2{font-size:clamp(22px,7vw,44px)}
+  .portfolio-cover h2{
+    width:300px;
+    max-width:calc(100vw - 48px);
+    font-size:min(56px,11vw);
+  }
   .portfolio-name-typewriter{width:100%}
+  .portfolio-name-typewriter{min-height:6.9em}
 
   /* The 14-character uppercase row must remain inside the shared page gutter. */
   .core-wayfinding-uppercase p{font-size:7.35vw;letter-spacing:.012em}
@@ -664,30 +669,64 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 
 /* Final optical alignment contract for the arrow and airport specimens. */
 .core-wayfinding-arrows p{
-  display:grid;
-  grid-template-columns:repeat(10,minmax(0,1fr));
+  display:flex;
   align-items:center;
+  justify-content:flex-start!important;
+  column-gap:.32em;
   width:100%;
+  margin-right:auto;
+  text-align:left;
   white-space:nowrap;
 }
 .core-wayfinding-arrows p>span{
-  display:grid;
-  place-items:center;
+  display:inline-block;
+  flex:0 0 auto;
   min-width:0;
   margin:0;
+  font-family:Relay,sans-serif;
   font-size:1em;
+  font-weight:900;
   line-height:1;
+  text-align:center;
 }
-.core-wayfinding-arrows p>span:first-child{justify-items:start}
-.core-wayfinding-arrows p>span:last-child{justify-items:end;font-size:1.12em}
+.core-wayfinding-arrows p>span:first-child,
+.core-wayfinding-arrows p>span:last-child{
+  justify-items:normal;
+  font-size:1em;
+}
+.core-wayfinding-arrows p>span+span{margin-left:0}
+
+/* The contact arrow follows the email's exact type size and baseline. */
+.relay-cta a .email-arrow{
+  display:inline;
+  position:relative;
+  top:.08em;
+  font:inherit!important;
+  letter-spacing:inherit;
+  vertical-align:baseline;
+}
 
 /* In the first Heathrow composition the type is the scale reference. */
 .airport-study-symbols{
-  height:1.1em;
+  align-items:flex-start;
+  height:1.6em;
   font-size:1em;
-  line-height:1.1;
+  line-height:1;
 }
-.airport-study-symbols span{width:1em;height:1em;font-size:1em}
+.airport-study-symbols.airport-sequence-minimal{
+  justify-content:flex-start;
+  height:1em;
+  font-size:1.06em;
+  line-height:1;
+}
+.airport-study-symbols.airport-sequence-minimal>span{
+  display:inline;
+  width:auto;
+  height:auto;
+  font-size:1em;
+  line-height:1;
+}
+.airport-study-symbols span{width:1em;height:1em;font-size:1.6em}
 
 /* Letter rows and pictogram rows share one baseline rhythm. */
 .airport-sequence-full p,
@@ -698,9 +737,12 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
   line-height:1.12;
 }
 .airport-sequence-full .airport-sequence-pictograms{
-  font-size:1.1em;
+  font-size:1em;
   line-height:1.12;
+  transform:scale(1.06);
+  transform-origin:left center;
 }
+.airport-sequence-full p:nth-child(5){margin-top:0}
 
 /* Both smaller airport/arrow pairs use the exact same size. */
 .airport-sequence-grid{--airport-pair-size:clamp(42px,4.4vw,84px)}
@@ -709,8 +751,24 @@ body,body *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1
 .airport-sequence-compact .airport-sequence-pictograms,
 .airport-sequence-minimal{line-height:1.1}
 
+/* The compact and standalone airport pairs repeat the large study's ratio. */
+.airport-sequence .airport-sequence-compact .airport-sequence-pictograms{
+  margin-top:-.08em;
+  font-size:1.06em;
+}
+.airport-sequence .airport-sequence-minimal{
+  font-size:calc(var(--airport-pair-size) * 1.06);
+}
+
+@media(min-width:651px){
+  .airport-sequence-compact{padding-left:var(--pad)}
+  .airport-sequence-compact p{height:1.22em;line-height:1.22}
+  .airport-sequence-compact .airport-sequence-pictograms{margin-top:-.08em}
+  .airport-sequence .airport-sequence-minimal{padding-top:2.342em}
+}
+
 @media(max-width:650px){
-  .core-wayfinding-arrows p{font-size:7.6vw}
+  .core-wayfinding-arrows p{justify-content:flex-start!important;column-gap:.32em;font-size:7.6vw;text-align:left}
   .airport-study-symbols{font-size:1em}
   .airport-sequence-grid{--airport-pair-size:8vw}
 }
