@@ -139,7 +139,7 @@ body{font-feature-settings:"ss01" 1}
 .relay-pair-controls output{font:inherit}
 .relay-pair-text{padding:var(--pad);font-size:var(--pair-size,56px);font-weight:var(--pair-weight,400);line-height:1.3;letter-spacing:var(--pair-tracking,0);overflow-wrap:anywhere;outline:0}
 .relay-pair-text:focus{background:rgba(16,16,16,.035)}
-.tester-text,.tester-text *,.relay-pair-text,.relay-pair-text *{font-variant-ligatures:none!important;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0,"hlig" 0,"rlig" 0!important}
+.tester-text,.tester-text *,.relay-pair-text,.relay-pair-text *{font-variant-ligatures:none!important;font-feature-settings:"ss01" 1,"liga" 0,"clig" 0,"dlig" 0,"hlig" 0,"rlig" 0!important}
 @media(max-width:900px){.relay-paired-testers{grid-template-columns:1fr}.relay-pair-unit{border-right:0;border-bottom:var(--line)}.relay-pair-unit:last-child{border-bottom:0}.pair-text-more{display:none}}
 @media(max-width:650px){.relay-pair-controls{grid-template-columns:1fr;gap:14px}.relay-pair-text{font-size:clamp(28px,8vw,var(--pair-size,56px))}}
 
